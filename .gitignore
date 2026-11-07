@@ -1,0 +1,101 @@
+# =====================================================================
+# Blast Intelligence AI - .gitignore
+# PRIVACY FIRST: confidential company data must NEVER be committed.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# Confidential data (entire directory, including any README inside it)
+# ---------------------------------------------------------------------
+data/
+/data/**
+*.jsonl
+*.jsonl.gz
+*.ndjson
+*.csv
+*.parquet
+*.xlsx
+*.xls
+!frontend/**/*.example.csv
+
+# ---------------------------------------------------------------------
+# Locally generated artefacts derived from the data
+# ---------------------------------------------------------------------
+local_reports/
+reports/
+models/
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.bin
+
+# Real ingestion mapping contains field names -> keep local
+backend/ingestion_config.json
+
+# Database files (DuckDB / SQLite)
+local_db/
+*.duckdb
+*.duckdb.wal
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Notebooks can embed data in cell outputs - keep them local
+*.ipynb
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------------
+# Logs and temp files
+# ---------------------------------------------------------------------
+logs/
+*.log
+*.tmp
+tmp/
+
+# ---------------------------------------------------------------------
+# Secrets / environment
+# ---------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials*.json
+
+# ---------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------
+venv/
+.venv/
+env/
+backend/venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------
+# Node / frontend
+# ---------------------------------------------------------------------
+node_modules/
+frontend/dist/
+frontend/build/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# ---------------------------------------------------------------------
+# Editors / OS / local agent tooling
+# ---------------------------------------------------------------------
+.vscode/
+.idea/
+.kilo/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db

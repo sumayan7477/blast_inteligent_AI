@@ -1,0 +1,7 @@
+pandas
+numpy
+duckdb
+scikit-learn
+fastapi
+uvicorn
+openpyxl

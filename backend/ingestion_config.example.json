@@ -1,0 +1,27 @@
+{
+  "_comment": "TEMPLATE ONLY. Copy to ingestion_config.json (git-ignored) or run: python backend/init_database.py --write-config. All names below are placeholders - take real field paths from local_reports/data_profile.json.",
+  "defaults": {
+    "batch_size": 10000,
+    "dedupe_strategy": "content_hash"
+  },
+  "files": {
+    "EXAMPLE_FILE.jsonl": {
+      "_comment": "Any file not listed here is still ingested with defaults into raw_<file_stem>.",
+      "enabled": true,
+      "table": "raw_example_file",
+      "dedupe_strategy": "content_hash",
+      "source_id_field": "<id_field_path_from_profile>",
+      "view": "v_example_file",
+      "columns": [
+        { "name": "example_text_col",      "path": "<field_path>",                "type": "VARCHAR" },
+        { "name": "example_number_col",    "path": "<parent>.<child>",            "type": "DOUBLE" },
+        { "name": "example_timestamp_col", "path": "<field_path>",                "type": "TIMESTAMP" },
+        { "name": "example_epoch_col",     "path": "<field_path>",                "type": "EPOCH_MS" },
+        { "name": "example_array_item",    "path": ["<array_field>", 0, "<key>"], "type": "VARCHAR" },
+        { "name": "example_nested_json",   "path": "<object_field>",              "type": "JSON" }
+      ]
+    }
+  },
+  "_types": "VARCHAR, BIGINT, INTEGER, DOUBLE, BOOLEAN, DATE, TIMESTAMP, TIMESTAMPTZ, EPOCH_S, EPOCH_MS, JSON",
+  "_dedupe": "content_hash = identical records stored once (safe default). source_id = one row per id (only if the profile shows the id is unique)."
+}
